@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Toastique Pop Ups">
+  <title>Toastique Pop Ups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      background: #FAF8F5;
+      color: #2C2C2C;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #FAF8F5;
+      padding: 24px 0 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .header img {
+      height: 48px;
+      width: auto;
+    }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #B8956A;
+      margin-top: 8px;
+    }
+
+    /* Menu Grid */
+    .menu {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 40px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) {
+      .menu {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding: 40px 40px 48px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .menu {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Product Card */
+    .card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #F0EDE8;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.3;
+      color: #2C2C2C;
+      margin-bottom: 6px;
+    }
+
+    .card-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #B8956A;
+    }
+
+    .card-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    .footer {
+      background: #2C2C2C;
+      color: #FAF8F5;
+      text-align: center;
+      padding: 20px 14px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    /* Smooth scroll for any future anchoring */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="images/toastique-logo.png" alt="Toastique">
+    <h1>Pop Ups Menu</h1>
+  </div>
+
+  <div class="menu">
+
+    <div class="card">
+      <img class="card-img" src="images/matcha-cups.png" alt="Matcha Cups">
+      <div class="card-body">
+        <div class="card-name">Matcha Cups</div>
+        <div class="card-price">$4.50</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/matcha-12oz.png" alt="Matcha 12oz">
+      <div class="card-body">
+        <div class="card-name">Matcha 12oz</div>
+        <div class="card-price">$5.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/toasties.jpg" alt="Toasties">
+      <div class="card-body">
+        <div class="card-name">Toasties</div>
+        <div class="card-price">$4.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/superfood-bar.jpg" alt="Superfood Bar">
+      <div class="card-body">
+        <div class="card-name">Superfood Bar</div>
+        <div class="card-price">$3.50</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/granola-bar.png" alt="Granola Bar">
+      <div class="card-body">
+        <div class="card-name">Granola Bar</div>
+        <div class="card-price">$4.50</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/energy-balls.jpg" alt="Energy Balls">
+      <div class="card-body">
+        <div class="card-name">Energy Balls</div>
+        <div class="card-price">$4.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/chia-pudding.jpg" alt="Chia Pudding">
+      <div class="card-body">
+        <div class="card-name">Chia Pudding</div>
+        <div class="card-price">$6.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/16-oz--cold-pressed-juice-bottles.png" alt="16 oz. Cold Pressed Juice Bottles">
+      <div class="card-body">
+        <div class="card-name">Cold Pressed Juice 16oz</div>
+        <div class="card-price">$8.00 – $12.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/8-oz--cold-pressed-juice-bottles.png" alt="8 oz. Cold Pressed Juice Bottles">
+      <div class="card-body">
+        <div class="card-name">Cold Pressed Juice 8oz</div>
+        <div class="card-price">$8.00</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="images/shot.png" alt="Immunity+ Shot">
+      <div class="card-body">
+        <div class="card-name">Immunity+ Shot</div>
+        <div class="card-price">$5.00</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Order at the counter · Toastique Wichita
+  </div>
+
+</body>
+</html>
