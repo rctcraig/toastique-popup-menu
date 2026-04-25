@@ -9,7 +9,7 @@
   <title>Toastique Pop Ups</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -91,11 +91,16 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
     }
 
     .card:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
     }
 
     .card-img {
@@ -119,6 +124,12 @@
       margin-bottom: 6px;
     }
 
+    .card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .card-price {
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
@@ -126,16 +137,86 @@
       color: #B8956A;
     }
 
-    .card-desc {
-      font-family: 'Montserrat', sans-serif;
+    .card-add {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #2C2C2C;
+      color: #FAF8F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
       font-weight: 300;
-      font-size: 12px;
-      color: #888;
-      margin-top: 6px;
-      line-height: 1.4;
+      line-height: 1;
+      flex-shrink: 0;
     }
 
-    /* Footer */
+    /* Cart Bar */
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #2C2C2C;
+      color: #FAF8F5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .cart-bar.visible {
+      transform: translateY(0);
+    }
+
+    .cart-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-count {
+      background: #B8956A;
+      color: #FFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cart-total {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .cart-checkout {
+      background: #B8956A;
+      color: #FFF;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cart-checkout:active {
+      opacity: 0.85;
+    }
+
+    /* Empty state footer (shown when cart is empty) */
     .footer {
       background: #2C2C2C;
       color: #FAF8F5;
@@ -146,7 +227,38 @@
       letter-spacing: 1px;
     }
 
-    /* Smooth scroll for any future anchoring */
+    /* Quantity badge on card */
+    .qty-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #B8956A;
+      color: #FFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .qty-badge.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Scroll padding for cart bar */
+    .menu-wrapper {
+      padding-bottom: 80px;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -159,93 +271,130 @@
     <h1>Pop Ups Menu</h1>
   </div>
 
-  <div class="menu">
-
-    <div class="card">
-      <img class="card-img" src="images/matcha-cups.png" alt="Matcha Cups">
-      <div class="card-body">
-        <div class="card-name">Matcha Cups</div>
-        <div class="card-price">$4.50</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/matcha-12oz.png" alt="Matcha 12oz">
-      <div class="card-body">
-        <div class="card-name">Matcha 12oz</div>
-        <div class="card-price">$5.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/toasties.jpg" alt="Toasties">
-      <div class="card-body">
-        <div class="card-name">Toasties</div>
-        <div class="card-price">$4.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/superfood-bar.jpg" alt="Superfood Bar">
-      <div class="card-body">
-        <div class="card-name">Superfood Bar</div>
-        <div class="card-price">$3.50</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/granola-bar.png" alt="Granola Bar">
-      <div class="card-body">
-        <div class="card-name">Granola Bar</div>
-        <div class="card-price">$4.50</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/energy-balls.jpg" alt="Energy Balls">
-      <div class="card-body">
-        <div class="card-name">Energy Balls</div>
-        <div class="card-price">$4.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/chia-pudding.jpg" alt="Chia Pudding">
-      <div class="card-body">
-        <div class="card-name">Chia Pudding</div>
-        <div class="card-price">$6.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/16-oz--cold-pressed-juice-bottles.png" alt="16 oz. Cold Pressed Juice Bottles">
-      <div class="card-body">
-        <div class="card-name">Cold Pressed Juice 16oz</div>
-        <div class="card-price">$12.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/8-oz--cold-pressed-juice-bottles.png" alt="8 oz. Cold Pressed Juice Bottles">
-      <div class="card-body">
-        <div class="card-name">Cold Pressed Juice 8oz</div>
-        <div class="card-price">$8.00</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/shot.png" alt="Immunity+ Shot">
-      <div class="card-body">
-        <div class="card-name">Immunity+ Shot</div>
-        <div class="card-price">$5.00</div>
-      </div>
-    </div>
-
+  <div class="menu-wrapper">
+    <div class="menu" id="menu"></div>
   </div>
 
-  <div class="footer">
-    Order at the counter · Toastique Wichita
+  <div class="footer" id="footer">
+    Tap an item to add it to your order
   </div>
+
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-info">
+      <div class="cart-count" id="cartCount">0</div>
+      <div class="cart-total" id="cartTotal">$0.00</div>
+    </div>
+    <button class="cart-checkout" id="checkoutBtn">Checkout</button>
+  </div>
+
+  <script>
+    const PRODUCTS = [
+      { name: "Matcha Cups", price: 4.50, img: "images/matcha-cups.png", sqId: "4DJ73B3QMPQFMZ4374HFST7X" },
+      { name: "Matcha 12oz", price: 5.00, img: "images/matcha-12oz.png", sqId: "I24RPXBNNU66COM4HG2FTUVJ" },
+      { name: "Toasties", price: 4.00, img: "images/toasties.jpg", sqId: "61" },
+      { name: "Superfood Bar", price: 3.50, img: "images/superfood-bar.jpg", sqId: "JAC4WWW2JV2QLFQLKWO7N3Q6" },
+      { name: "Granola Bar", price: 4.50, img: "images/granola-bar.png", sqId: "JCD7RDM4Y54DE2736GXKRTRP" },
+      { name: "Energy Balls", price: 4.00, img: "images/energy-balls.jpg", sqId: "ZRREM6KJECNJTLGHUP6QLPRZ" },
+      { name: "Chia Pudding", price: 6.00, img: "images/chia-pudding.jpg", sqId: "T7JROSCXAV2YOOFLNJG4O2XX" },
+      { name: "Cold Pressed Juice 16oz", price: 12.00, img: "images/16-oz--cold-pressed-juice-bottles.png", sqId: "42" },
+      { name: "Cold Pressed Juice 8oz", price: 8.00, img: "images/8-oz--cold-pressed-juice-bottles.png", sqId: "26" },
+      { name: "Immunity+ Shot", price: 5.00, img: "images/shot.png", sqId: "58" },
+    ];
+
+    const cart = {};
+    const menuEl = document.getElementById('menu');
+    const cartBar = document.getElementById('cartBar');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const footer = document.getElementById('footer');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    function renderMenu() {
+      menuEl.innerHTML = PRODUCTS.map((p, i) => `
+        <div class="card" data-idx="${i}" onclick="addToCart(${i})">
+          <span class="qty-badge" id="badge-${i}"></span>
+          <img class="card-img" src="${p.img}" alt="${p.name}">
+          <div class="card-body">
+            <div class="card-name">${p.name}</div>
+            <div class="card-row">
+              <div class="card-price">$${p.price.toFixed(2)}</div>
+              <div class="card-add">+</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(idx) {
+      cart[idx] = (cart[idx] || 0) + 1;
+      updateUI();
+    }
+
+    function updateUI() {
+      let count = 0;
+      let total = 0;
+      for (const [idx, qty] of Object.entries(cart)) {
+        count += qty;
+        total += qty * PRODUCTS[idx].price;
+      }
+
+      // Update badges
+      PRODUCTS.forEach((_, i) => {
+        const badge = document.getElementById('badge-' + i);
+        const qty = cart[i] || 0;
+        badge.textContent = qty;
+        badge.classList.toggle('show', qty > 0);
+      });
+
+      // Update cart bar
+      cartCount.textContent = count;
+      cartTotal.textContent = '$' + total.toFixed(2);
+
+      if (count > 0) {
+        cartBar.classList.add('visible');
+        footer.style.display = 'none';
+      } else {
+        cartBar.classList.remove('visible');
+        footer.style.display = '';
+      }
+    }
+
+    checkoutBtn.addEventListener('click', () => {
+      // Build Square order URL with all items
+      // Square's order URL format: /s/order?cs=true&cst=custom&item=ID
+      // For multiple items, we'll open the first one to get them into Square's flow
+      // Unfortunately Square doesn't support multi-item deep links in one URL
+      // So we'll redirect to the Square order page
+      const baseUrl = 'https://toastiquewichita.square.site/s/order';
+      
+      // Get the first item in cart to deep-link
+      const firstIdx = Object.keys(cart).find(k => cart[k] > 0);
+      if (firstIdx !== undefined) {
+        const item = PRODUCTS[firstIdx];
+        window.location.href = baseUrl + '?cs=true&cst=custom&item=' + item.sqId;
+      }
+    });
+
+    // Long press to remove
+    let pressTimer;
+    menuEl.addEventListener('touchstart', (e) => {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      const idx = parseInt(card.dataset.idx);
+      pressTimer = setTimeout(() => {
+        if (cart[idx] && cart[idx] > 0) {
+          cart[idx]--;
+          if (cart[idx] === 0) delete cart[idx];
+          updateUI();
+        }
+      }, 600);
+    });
+
+    menuEl.addEventListener('touchend', () => clearTimeout(pressTimer));
+    menuEl.addEventListener('touchmove', () => clearTimeout(pressTimer));
+
+    renderMenu();
+  </script>
 
 </body>
 </html>
